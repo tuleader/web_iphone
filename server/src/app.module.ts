@@ -12,7 +12,9 @@ import { VariantModule } from './variant/variant.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: ['.env.example'],
+    }),
     TypeOrmModule.forRoot({
       type: process.env.DB_NAME as any,
       host: process.env.DB_HOST,
