@@ -265,10 +265,10 @@ const Payment = () => {
 const Info = () => {
   const { register, control, setValue } = useFormContext(); // retrieve all hook methods
   const { data: cities } = useCities();
-  const [districts, setDistricts] = useState<DistrictType[]>([]);
-  const [wards, setWards] = useState<WardType[]>([]);
+  const [districts, setDistricts] = useState<DistrictType['results']>([]);
+  const [wards, setWards] = useState<WardType['results']>([]);
 
-  const citiesOption = cities?.map((c) => ({
+  const citiesOption = cities?.results?.map((c) => ({
     value: c.code,
     label: c.name,
   }));
@@ -289,11 +289,9 @@ const Info = () => {
   ) => {
     try {
       onChange(e);
-      const res = await axios.get<CityType>(
-        'https://provinces.open-api.vn/api/p/' + e.value + '?depth=2'
-      );
+      const districtData = await axios.get<DistrictType>(`https://api.mysupership.vn/v1/partner/areas/district?province=${e.value}`);
+      setDistricts(districtData.data.results);
       setValue('district', null);
-      setDistricts(res.data.districts);
       setValue('ward', null);
       setWards([]);
     } catch (error) {
@@ -307,10 +305,8 @@ const Info = () => {
   ) => {
     try {
       onChange(e);
-      const res = await axios.get<DistrictType>(
-        'https://provinces.open-api.vn/api/d/' + e.value + '?depth=2'
-      );
-      setWards(res.data.wards);
+      const wardData = await axios.get<WardType>(`https://api.mysupership.vn/v1/partner/areas/commune?district=${e.value}`);
+      setWards(wardData.data.results);
       setValue('ward', null);
     } catch (error) {
       console.log(error);

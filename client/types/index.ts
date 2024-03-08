@@ -82,30 +82,34 @@ export type CartItemType = {
   quantity: number;
 };
 
-export type WardType = {
-  name: string;
-  code: number;
-  division_type: string;
-  codename: string;
-  district_code: number;
+export type CityType = {
+    status: string;
+    message: string;
+    results: {
+      code: number;
+      name: string;
+    }[];
 };
 
 export type DistrictType = {
-  name: string;
-  code: number;
-  division_type: string;
-  codename: string;
-  province_code: number;
-  wards: WardType[];
+  status: string;
+  message: string;
+  results: {
+    code: number;
+    name: string;
+    province: string;
+  }[];
 };
 
-export type CityType = {
-  code: number;
-  codename: string;
-  division_type: string;
-  name: string;
-  phone_code: number;
-  districts: DistrictType[];
+export type WardType = {
+  status: string;
+  message: string;
+  results: {
+    code: number;
+    name: string;
+    district: string;
+    province: string;
+  }[];
 };
 
 export type UserType = {

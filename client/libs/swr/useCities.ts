@@ -7,8 +7,8 @@ const fetcher = (url: string) => {
 };
 
 export function useCities() {
-  const { data, error, mutate } = useSWR<CityType[]>(
-    [`https://provinces.open-api.vn/api/`],
+  const { data, error, mutate } = useSWR<CityType>(
+    [`https://api.mysupership.vn/v1/partner/areas/province`],
     fetcher
   );
 
