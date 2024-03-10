@@ -251,6 +251,9 @@ const Payment = () => {
               <Radio color='secondary' value='ZALOPAY' size='xs'>
                 Thanh toán qua Zalo Pay
               </Radio>
+              <Radio color='secondary' value='BANK' size='xs'>
+                Thanh toán qua chuyển khoản
+              </Radio>              
               {/* <Radio color='secondary' value='MOMO' size='xs'>
                 Thanh toán qua Momo
               </Radio> */}
